@@ -1,15 +1,15 @@
-<div style="display: flex; flex-direction: column; align-items: center; margin-top: 1.5rem;">
-  <div style="font-size: 1.25rem; font-weight: 600; margin-bottom: 10px;">📄 PDFs Generated</div>
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 1rem;">
+  <div style="font-size: 1rem; font-weight: 600; margin-bottom: 8px;">📄 PDFs Generated</div>
 
   <!-- Slot Machine Container -->
-  <div style="background: #f5f5f5; border-radius: 20px; padding: 12px 8px;">
-    <div id="slot-counter" style="display: flex; gap: 6px; justify-content: center;"></div>
+  <div style="background: #f5f5f5; border-radius: 12px; padding: 8px;">
+    <div id="slot-counter" style="display: flex; gap: 4px; justify-content: center;"></div>
   </div>
 </div>
 
 <script>
   const FINAL_VALUE = 67567;
-  const SLOT_HEIGHT = 60; // Smaller height for mobile
+  const SLOT_HEIGHT = 40; // Smaller height
   const SPIN_DIGITS = 20;
   const TOTAL_ANIMATION_TIME = 2500;
   const DIGIT_COUNT = FINAL_VALUE.toString().length;
@@ -17,11 +17,11 @@
 
   function createSlotDigit(finalDigit, index) {
     const box = document.createElement("div");
-    box.style.width = "40px"; // Smaller width
+    box.style.width = "26px"; // Small box width
     box.style.height = `${SLOT_HEIGHT}px`;
     box.style.background = "#fff";
-    box.style.border = "3px solid red";
-    box.style.borderRadius = "0px";
+    box.style.border = "2px solid red";
+    box.style.borderRadius = "2px";
     box.style.overflow = "hidden";
     box.style.position = "relative";
     box.style.display = "flex";
@@ -35,7 +35,7 @@
     reel.style.left = "0";
     reel.style.right = "0";
     reel.style.transition = "transform 0.6s ease-out";
-    reel.style.fontSize = "1.5rem"; // Smaller font
+    reel.style.fontSize = "1rem"; // Smaller font
     reel.style.fontWeight = "bold";
     reel.style.color = "#000";
     reel.style.textAlign = "center";

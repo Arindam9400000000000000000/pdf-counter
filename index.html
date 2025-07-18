@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PDFs Generated Counter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: white;">
+
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 2rem;">
+    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 10px;">📄 PDFs Generated</div>
+
+    <!-- Slot Machine Container -->
+    <div style="background: #f5f5f5; border-radius: 25px; padding: 15px 10px;">
+      <div id="slot-counter" style="display: flex; gap: 8px; justify-content: center;"></div>
+    </div>
+  </div>
+
+  <script>
+    const FINAL_VALUE = 67567;
+    const SLOT_HEIGHT = 80;
+    const SPIN_DIGITS = 20;
+    const TOTAL_ANIMATION_TIME = 2500; // in ms
+    const DIGIT_COUNT = FINAL_VALUE.toString().length;
+    const DIGIT_DELAY = TOTAL_ANIMATION_TIME / DIGIT_COUNT;
+
+    function createSlotDigit(finalDigit, index) {
+      const box = document.createElement("div");
+      box.style.width = "60px";
+      box.style.height = `${SLOT_HEIGHT}px`;
+      box.style.background = "#fff";
+      box.style.border = "4px solid red";
+      box.style.borderRadius = "0px";
+      box.style.overflow = "hidden";
+      box.style.position = "relative";
+      box.style.display = "flex";
+      box.style.alignItems = "center";
+      box.style.justifyContent = "center";
+      box.style.boxSizing = "border-box";
+
+      const reel = document.createElement("div");
+      reel.style.position = "absolute";
+      reel.style.top = "0";
+      reel.style.left = "0";
+      reel.style.right = "0";
+      reel.style.transition = "transform 0.6s ease-out";
+      reel.style.fontSize = "2.2rem";
+      reel.style.fontWeight = "bold";
+      reel.style.color = "#000";
+      reel.style.textAlign = "center";
+
+      for (let i = 0; i < SPIN_DIGITS; i++) {
+        const num = document.createElement("div");
+        num.innerText = i % 10;
+        num.style.height = `${SLOT_HEIGHT}px`;
+        num.style.display = "flex";
+        num.style.justifyContent = "center";
+        num.style.alignItems = "center";
+        reel.appendChild(num);
+      }
+
+      box.appendChild(reel);
+
+      setTimeout(() => {
+        const totalHeight = SLOT_HEIGHT * SPIN_DIGITS;
+        const stopAt = finalDigit * SLOT_HEIGHT;
+        const spinHeight = totalHeight - stopAt;
+        reel.style.transform = `translateY(-${spinHeight}px)`;
+      }, index * DIGIT_DELAY);
+
+      return box;
+    }
+
+    function animateSlotMachine(value) {
+      const container = document.getElementById("slot-counter");
+      container.innerHTML = "";
+
+      const digits = value.toString().split("");
+      digits.forEach((digit, i) => {
+        const box = createSlotDigit(parseInt(digit), i);
+        container.appendChild(box);
+      });
+    }
+
+    // Start animation on load
+    document.addEventListener("DOMContentLoaded", () => {
+      animateSlotMachine(FINAL_VALUE);
+    });
+  </script>
+
+</body>
+</html>

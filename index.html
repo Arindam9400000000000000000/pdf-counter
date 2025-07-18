@@ -1,15 +1,15 @@
 <div style="display: flex; flex-direction: column; align-items: center; margin-top: 1rem;">
-  <div style="font-size: 1rem; font-weight: 600; margin-bottom: 8px;">📄 PDFs Generated</div>
+  <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;">📄 PDFs Generated</div>
 
-  <!-- Responsive Box Container -->
-  <div style="max-width: 400px; overflow: hidden; border-radius: 8px; background: #f8f8f8; padding: 8px;">
-    <div id="slot-counter" style="display: flex; justify-content: center; gap: 6px; flex-wrap: nowrap;"></div>
+  <!-- Counter Container -->
+  <div style="max-width: 100%; padding: 6px 0; overflow: hidden;">
+    <div id="slot-counter" style="display: flex; justify-content: center; gap: 10px; flex-wrap: nowrap;"></div>
   </div>
 </div>
 
 <script>
   const FINAL_VALUE = 67567;
-  const SLOT_HEIGHT = 42;
+  const SLOT_HEIGHT = 56; // increased for bigger digits
   const SPIN_DIGITS = 20;
   const TOTAL_ANIMATION_TIME = 2500;
   const DIGIT_COUNT = FINAL_VALUE.toString().length;
@@ -17,11 +17,11 @@
 
   function createSlotDigit(finalDigit, index) {
     const box = document.createElement("div");
-    box.style.width = "30px";
+    box.style.width = "44px";
     box.style.height = `${SLOT_HEIGHT}px`;
     box.style.background = "#fff";
-    box.style.border = "2px solid red";
-    box.style.borderRadius = "4px";
+    box.style.border = "3px solid red";
+    box.style.borderRadius = "6px";
     box.style.overflow = "hidden";
     box.style.position = "relative";
     box.style.display = "flex";
@@ -35,8 +35,8 @@
     reel.style.left = "0";
     reel.style.right = "0";
     reel.style.transition = "transform 0.6s ease-out";
-    reel.style.fontSize = "1.1rem";
-    reel.style.fontWeight = "bold";
+    reel.style.fontSize = "1.8rem";
+    reel.style.fontWeight = "900";
     reel.style.color = "#000";
     reel.style.textAlign = "center";
 
